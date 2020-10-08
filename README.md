@@ -2,7 +2,7 @@
 
 This is the Client of the [minesweeper API](https://github.com/bgiulianetti/minesweeper) hosted in [heroku.com](https://heroku.com)
 ## Decisions made
-- The project was developed in Node.js with Express.js
+- The project was developed in [Node.js](https://nodejs.org) with [Express.js](https://expressjs.com)
 - It consumes all of the endpoints of the minesweeper API, and for simplicity logs all the responses.
 
 ## Endpoints
@@ -33,8 +33,8 @@ Create a new game
  ```
  
 ## Set up and run the project
- - In order to be able to run the project first you must install [node.js](https://nodejs.org/es/).
- - Once you have install node.js, you must run the following command in the root of the project:
+ - In order to be able to run the project first you must install [node.js](https://nodejs.org).
+ - Once you have installed node.js, you must run the following command in the root of the project:
   `$ npm install`
-  - This will install all the dependencies specified in the package.json file. When this process is finish you will notice that a new folder is created (node_modules) with contains all the libraries and dependencies.
-  - To run the application run the following command in the root of the project: `$ node app.js`
+  - This will install all the dependencies specified in the package.json file. When this process is finish you will notice that a new folder is created (node_modules) wich contains all the libraries and dependencies.
+  - To run the application you have to run the following command in the root of the project: `$ node app.js`
