@@ -36,5 +36,6 @@ Create a new game
  - In order to be able to run the project first you must install [node.js](https://nodejs.org).
  - Once you have installed node.js, you must run the following command in the root of the project:
   `$ npm install`
-  - This will install all the dependencies specified in the package.json file. When this process is finish you will notice that a new folder is created (node_modules) wich contains all the libraries and dependencies.
+  - This will install all the dependencies specified in the package.json file. When this process is finished you will notice that a new folder was created (node_modules) which contains all the libraries and dependencies.
   - To run the application you have to run the following command in the root of the project: `$ node app.js`
+  - The project by default runs on the port 3000, but if you want to change the port number, you can change it in [this line](https://github.com/bgiulianetti/minesweeper-client/blob/main/app.js#L136) of the app.js file
