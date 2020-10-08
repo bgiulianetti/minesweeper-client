@@ -1,5 +1,7 @@
 var express = require('express')
 const https = require('https');
+const request = require('request');
+
 const BASE_URL = "https://bgiulianetti-minesweeper.herokuapp.com/minesweeper";
 var querystring = require('querystring');
 var http = require('http');
@@ -59,21 +61,76 @@ app.get('/users/:user_id/games/:game_id', function(req, res){
 
 
 //Create a new game
-app.post('/users/:user_id/games/:game_id', function(req, res){
-    res.send("userid: " + req.params.user_id + ". gameID: " + req.params.game_id + ". mines: " + req.query.mines + ". rows: " + req.query.rows + ". cols: " + req.query.rows);
+app.post('/users/:user_id/games', function(req, res){
+   
+    const options = {
+      url: BASE_URL + '/users/' + req.params.user_id + '/games',
+      json: true,
+      body: {
+          columns: Number(req.query.cols),
+          rows: Number(req.query.rows),
+          mines: Number(req.query.mines)
+      }
+    };
+  
+    request.post(options, (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(`Status: ${res.statusCode}`);
+        console.log(body);
+    });
+  
+res.send("Game created ok");
 
 });
 
-//flag
+//flag a cell
 app.post('/users/:user_id/games/:game_id/flag', function(req, res){
-    res.send("userid: " + req.params.user_id + ". gameID: " + req.params.game_id + ". row: " + req.query.row + ". col: " + req.query.col + " flag:" + req.query.flag);
-    //game frm a user
+
+    const options = {
+      url: BASE_URL + '/users/' + req.params.user_id + '/games/' + req.params.game_id + '/flag',
+      json: true,
+      body: {
+          column: Number(req.query.cols),
+          row: Number(req.query.rows),
+          flag: req.query.flag
+      }
+    };
+  
+    request.post(options, (err, res, body) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log(`Status: ${res.statusCode}`);
+        console.log(body);
+    });
+
+    res.send("Flag cell ok");
 });
 
 //reveal
 app.post('/users/:user_id/games/:game_id/reveal', function(req, res){
-    res.send("userid: " + req.params.user_id + ". gameID: " + req.params.game_id + ". row: " + req.query.row + ". col: " + req.query.col);
-    //game frm a user
+
+  const options = {
+    url: BASE_URL + '/users/' + req.params.user_id + '/games/' + req.params.game_id + '/reveal',
+    json: true,
+    body: {
+        column: Number(req.query.cols),
+        row: Number(req.query.rows)
+    }
+  };
+
+  request.post(options, (err, res, body) => {
+      if (err) {
+          return console.log(err);
+      }
+      console.log(`Status: ${res.statusCode}`);
+      console.log(body);
+  });
+
+  res.send("Reveal cell ok");
+
 });
 
 app.listen(3000);
